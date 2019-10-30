@@ -1,4 +1,4 @@
-PACKAGE = echo-sample
+PACKAGE = echo
 NAMESPACE = default
 
 .PHONY: install
