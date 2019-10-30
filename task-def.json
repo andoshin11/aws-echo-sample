@@ -1,0 +1,18 @@
+{
+  "family": "echo-sample",
+  "containerDefinitions": [
+    {
+      "name": "echo",
+      "image": "513043865727.dkr.ecr.ap-northeast-1.amazonaws.com/echo-sample:latest",
+      "cpu": 10,
+      "memory": 500,
+      "portMappings": [
+        {
+          "containerPort": 1323,
+          "hostPort": 80
+        }
+      ],
+      "essential": true
+    }
+  ]
+}
