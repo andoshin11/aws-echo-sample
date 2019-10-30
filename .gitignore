@@ -1,2 +1,4 @@
 /bazel-*
 main
+terraform/terraform.tfvars
+.terraform
