@@ -1,5 +1,3 @@
-variable "aws_vpc_id" {}
-
 variable "aws_access_key" {}
 
 variable "aws_secret_key" {}
@@ -25,6 +23,5 @@ terraform {
 
 module "base" {
   source = "./modules"
-  aws_vpc_id = "${var.aws_vpc_id}"
   aws_region = "${var.aws_region}"
 }
