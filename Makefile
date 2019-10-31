@@ -1,4 +1,5 @@
 PACKAGE = echo
+PACKAGE_PORT = 1323
 NAMESPACE = default
 ECR_ARN = 513043865727.dkr.ecr.ap-northeast-1.amazonaws.com
 
@@ -24,8 +25,19 @@ run:
 
 .PHONY: container-build
 container-build:
-	$(eval image = $(shell git rev-parse HEAD))
-	bazel query //... | grep "//packages/${PACKAGE}:container_image" | xargs bazel run --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64
+	bazel query //... | grep "//packages/${PACKAGE}:container_image" | xargs bazel build --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64
+
+.PHONY: container-import
+container-import:
+	make container-build
+	$(eval hash = $(shell git rev-parse HEAD))
+	docker import ./bazel-bin/packages/${PACKAGE}/container_image-layer.tar ${ECR_ARN}:$(hash)
+
+.PHONY: container-run
+container-run:
+	make container-import
+	$(eval hash = $(shell git rev-parse HEAD))
+	docker run -it -p ${PACKAGE_PORT}:${PACKAGE_PORT} ${ECR_ARN}:$(hash) /${PACKAGE}
 
 .PHONY: container-push
 container-push:
