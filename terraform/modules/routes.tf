@@ -2,7 +2,7 @@
 resource "aws_default_route_table" "default-route-table" {
   default_route_table_id = "${aws_vpc.vpc.default_route_table_id}"
 
-  tags {
+  tags = {
     Name    = "${var.name}-${terraform.workspace}-default-route-table"
     Product = "${var.name}"
     Env     = "${terraform.workspace}"
@@ -28,7 +28,7 @@ resource "aws_route_table" "public-route-table" {
     gateway_id = "${aws_internet_gateway.main-gw.id}"
   }
 
-  tags {
+  tags = {
     Name    = "${var.name}-${terraform.workspace}-public-route-table"
     Product = "${var.name}"
     Env     = "${terraform.workspace}"
