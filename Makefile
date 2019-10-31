@@ -41,8 +41,8 @@ container-run:
 
 .PHONY: container-push
 container-push:
-	$(eval image = $(shell git rev-parse HEAD))
-	bazel query //... | grep "//packages/${PACKAGE}:container_push" | xargs bazel run --sandbox_debug --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64 --host_force_python=PY2 --define IMAGE_TAG=$(image) --define ECR_ARN=${ECR_ARN}
+	$(eval hash = $(shell git rev-parse HEAD))
+	bazel query //... | grep "//packages/${PACKAGE}:container_push" | xargs bazel run --sandbox_debug --platforms=@io_bazel_rules_go//go/toolchain:linux_amd64 --host_force_python=PY2 --define IMAGE_TAG=$(hash) --define ECR_ARN=${ECR_ARN}
 
 # terraform
 
