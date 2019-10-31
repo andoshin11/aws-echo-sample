@@ -17,18 +17,9 @@ go_binary(
     visibility = ["//visibility:public"],
 )
 
-# go_image(
-#     name = "echo_image",
-#     embed = [":go_default_library"],
-#     importpath = "github.com/andoshin11/echo-sample/packages/echo",
-#     goarch = "amd64",
-#     goos = "linux",
-#     pure = "on",
-# )
-
 # Docker
 
-load("@io_bazel_rules_docker//container:container.bzl", "container_image", "container_push")
+load("@io_bazel_rules_docker//container:container.bzl", "container_image")
 
 container_image(
     name = "container_image",
@@ -36,13 +27,4 @@ container_image(
     files = [":echo"],
     cmd = ["./echo"],
     ports = ["1323"],
-)
-
-container_push(
-    name = "container_push",
-    image = ":container_image",
-    format = "Docker",
-    registry = "$(ECR_ARN)",
-    repository = "echo-sample",
-    tag = "$(IMAGE_TAG)",
 )
