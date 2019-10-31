@@ -1,3 +1,11 @@
+variable "aws_access_key" {}
+
+variable "aws_secret_key" {}
+
+variable "aws_region" {
+  default = "ap-northeast-1"
+}
+
 provider "aws" {
   access_key = "${var.aws_access_key}"
   secret_key = "${var.aws_secret_key}"
@@ -5,18 +13,15 @@ provider "aws" {
 }
 
 terraform {
-  backend "s3" {
-    bucket = "echo-sample-tfstate"
-    key    = "echo-sample.terraform.tfstate" // tfstate name
-    region     = "ap-northeast-1" // cannot use variable here
-    profile = "default"
-    encrypt = true
+  backend "remote" {
+    organization = "studio-andy"
+    workspaces {
+      name = "aws-echo-sample"
+    }
   }
 }
 
-resource "aws_s3_bucket" "tfstate" {
-  bucket = "echo-sample-tfstate"
-  versioning {
-    enabled = true
-  }
+module "base" {
+  source     = "./modules"
+  aws_region = "${var.aws_region}"
 }

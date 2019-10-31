@@ -1,3 +1,2 @@
 aws_access_key = "ACCESS_KEY"
 aws_secret_key = "SECRET_KEY"
-aws_region = "ap-northeast-1"
