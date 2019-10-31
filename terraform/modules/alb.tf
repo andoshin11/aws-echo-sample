@@ -17,15 +17,15 @@ resource "aws_alb" "alb" {
 }
 
 resource "aws_alb_target_group" "alb" {
-  name     = "${var.name}-${terraform.workspace}-tg"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = "${aws_vpc.vpc.id}"
+  name        = "${var.name}-${terraform.workspace}-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = "${aws_vpc.vpc.id}"
   target_type = "ip"
 
   health_check {
-    interval            = 60
-    path                = "/"
+    interval = 60
+    path     = "/"
     //port                = 80  // NOTE: defaultはtraffic-port
     protocol            = "HTTP"
     timeout             = 20

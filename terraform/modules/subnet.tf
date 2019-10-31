@@ -1,7 +1,7 @@
 # Public
 resource "aws_subnet" "subnet-public-a" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block,8,1)}"
+  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block, 8, 1)}"
   availability_zone = "${var.aws_region}a"
 
   tags = {
@@ -13,7 +13,7 @@ resource "aws_subnet" "subnet-public-a" {
 
 resource "aws_subnet" "subnet-public-c" {
   vpc_id            = "${aws_vpc.vpc.id}"
-  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block,8,2)}"
+  cidr_block        = "${cidrsubnet(aws_vpc.vpc.cidr_block, 8, 2)}"
   availability_zone = "${var.aws_region}c"
 
   tags = {

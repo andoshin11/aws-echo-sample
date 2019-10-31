@@ -56,5 +56,5 @@ data "aws_iam_policy_document" "policy_document" {
 resource "aws_iam_policy" "policy" {
   name        = "echo-sample-policy"
   description = "echo-sample policy"
-  policy = "${data.aws_iam_policy_document.policy_document.json}"
+  policy      = "${data.aws_iam_policy_document.policy_document.json}"
 }

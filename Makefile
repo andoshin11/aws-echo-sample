@@ -42,3 +42,7 @@ tf-apply:
 .PHONY: tf-destroy
 tf-destroy:
 	cd terraform; terraform destroy
+
+.PHONY: tf-fmt
+tf-fmt:
+	cd terraform; terraform fmt -recursive

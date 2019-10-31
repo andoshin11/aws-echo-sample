@@ -1,6 +1,6 @@
 resource "aws_iam_role" "iam_role" {
   assume_role_policy = "${file("${path.module}/ecs_assume_role_policy.json")}"
-  name = "${var.name}_ecs"
+  name               = "${var.name}_ecs"
 }
 
 data "template_file" "execution_assume_role_policy" {
@@ -13,7 +13,7 @@ data "template_file" "execution_assume_role_policy" {
 
 resource "aws_iam_role" "execution" {
   assume_role_policy = "${data.template_file.execution_assume_role_policy.rendered}"
-  name = "${var.name}_execution"
+  name               = "${var.name}_execution"
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_service" {
