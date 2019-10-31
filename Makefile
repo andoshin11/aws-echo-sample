@@ -23,6 +23,7 @@ run:
 	bazel run //packages/${PACKAGE}:${PACKAGE}
 
 # container
+
 .PHONY: container-login
 container-login:
 	$$(aws ecr get-login --no-include-email)
