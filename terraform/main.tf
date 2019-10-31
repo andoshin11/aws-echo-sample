@@ -13,15 +13,15 @@ provider "aws" {
 }
 
 terraform {
-   backend "remote" {
-      organization = "studio-andy"
-      workspaces {
-         name = "aws-echo-sample"
-      }
-   }
+  backend "remote" {
+    organization = "studio-andy"
+    workspaces {
+      name = "aws-echo-sample"
+    }
+  }
 }
 
 module "base" {
-  source = "./modules"
+  source     = "./modules"
   aws_region = "${var.aws_region}"
 }
