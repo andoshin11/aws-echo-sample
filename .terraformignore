@@ -1,0 +1,8 @@
+/bazel-*
+/packages
+go.mod
+go.sum
+Makefile
+task-def.json
+WORKSPACE
+BUILD.bazel
