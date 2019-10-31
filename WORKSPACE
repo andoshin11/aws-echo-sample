@@ -36,7 +36,6 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies()
 
-
 # ================================================================
 # Docker support requires rules_docker
 # ================================================================
