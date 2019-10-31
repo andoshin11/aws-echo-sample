@@ -35,13 +35,14 @@ container_image(
     base = "@distroless_base_image//image",
     files = [":echo"],
     cmd = ["./echo"],
+    ports = ["1323"],
 )
 
 container_push(
     name = "container_push",
     image = ":container_image",
     format = "Docker",
-    registry = "index.docker.io",
-    repository = "soushin/bazel-multiprojects-go",
+    registry = "$(ECR_ARN)",
+    repository = "echo-sample",
     tag = "$(IMAGE_TAG)",
 )
